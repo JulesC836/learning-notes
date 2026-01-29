@@ -1,0 +1,90 @@
+La réponse courte est : **Oui, absolument.** L'utilisation des `record` pour les DTO (Data Transfer Objects) est devenue la "bonne pratique" moderne avec Spring Boot (depuis Java 14/16+).
+
+Voici pourquoi c'est un excellent choix et les quelques nuances à connaître.
+
+---
+
+## 🚀 Pourquoi utiliser des `record` pour vos DTO ?
+
+### 1. Adieu le "Boilerplate" (Code répétitif)
+Un DTO est une simple boîte de transport de données. Avec une classe classique, vous devez écrire (ou générer avec Lombok) les getters, le constructeur, `equals()`, `hashCode()` et `toString()`.
+Avec un `record`, tout cela est géré en **une seule ligne**.
+**Version Record :**
+```java
+public record UserDTO(String username, String email) {}
+```
+
+---
+
+## 📝 Les Annotations Utiles avec les `record`
+
+### 1. **@Validated** (Jakarta Validation)
+Pour valider les données à l'entrée :
+```java
+public record UserDTO(
+    @NotBlank(message = "Le username est obligatoire")
+    String username,
+    
+    @Email(message = "Email invalide")
+    String email
+) {}
+```
+
+### 2. **@JsonProperty** (Jackson)
+Pour mapper les noms de propriétés JSON différents :
+```java
+public record UserDTO(
+    @JsonProperty("user_name")
+    String username,
+    
+    String email
+) {}
+```
+
+### 3. **@JsonIgnore** (Jackson)
+Pour ignorer certains champs lors de la sérialisation :
+```java
+public record UserDTO(
+    String username,
+    
+    @JsonIgnore
+    String internalId
+) {}
+```
+
+### 4. **@Builder** (Lombok)
+Pour ajouter le pattern Builder :
+```java
+@Builder
+public record UserDTO(
+    String username,
+    String email
+) {}
+```
+
+### 5. **Combinaison complète (Validation + Jackson)**
+```java
+public record UserDTO(
+    @NotBlank
+    @JsonProperty("user_name")
+    String username,
+    
+    @Email
+    @JsonProperty("user_email")
+    String email
+) {}
+```
+
+### ✅ Avantages des `record` pour les DTO
+- Immutable par défaut
+- Pas de boilerplate
+- Sérialization/Désérialisation native avec Jackson
+- Compatible avec la validation Spring
+- Code plus lisible et maintenable
+**Version Classe (avec Lombok) :**
+```java
+@Value
+public class UserDTO {
+    String username;
+    String email;
+}
