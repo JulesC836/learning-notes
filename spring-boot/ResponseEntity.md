@@ -118,23 +118,18 @@ public ResponseEntity<User> createUser(@RequestBody User user) {
 | 404 | `HttpStatus.NOT_FOUND` | Ressource introuvable |
 | 500 | `HttpStatus.INTERNAL_SERVER_ERROR` | Erreur serveur |
 
-## With a builder patern
-Here are some common builder methods available for ResponseEntity:
+## Avec le pattern Builder
 
-```Markdown
-.status(HttpStatus status): Sets the HTTP status code.
+Voici les méthodes courantes disponibles pour construire une `ResponseEntity` :
 
-.body(Object body): Sets the body of the response.
-
-.header(String headerName, String... headerValues): Adds headers to the response.
-
-.contentType(MediaType mediaType): Sets the Content-Type header.
-
-.location(URI location): Sets the Location header, commonly used in responses to POST requests that create new resources.
-
-.build(): Finalizes the ResponseEntity construction and returns the object.
-
-```
+| Méthode | Description |
+|---------|------------|
+| `.status(HttpStatus status)` | Définit le code de statut HTTP |
+| `.body(Object body)` | Définit le corps de la réponse |
+| `.header(String name, String... values)` | Ajoute des en-têtes à la réponse |
+| `.contentType(MediaType mediaType)` | Définit l'en-tête Content-Type |
+| `.location(URI location)` | Définit l'en-tête Location (utile pour les réponses POST créant de nouvelles ressources) |
+| `.build()` | Finalise la construction et retourne l'objet `ResponseEntity` |
 
 ## Méthodes utiles de ResponseEntity
 
