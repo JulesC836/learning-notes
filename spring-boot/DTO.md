@@ -1,8 +1,3 @@
-La réponse courte est : **Oui, absolument.** L'utilisation des `record` pour les DTO (Data Transfer Objects) est devenue la "bonne pratique" moderne avec Spring Boot (depuis Java 14/16+).
-
-Voici pourquoi c'est un excellent choix et les quelques nuances à connaître.
-
----
 
 ## 🚀 Pourquoi utiliser des `record` pour vos DTO ?
 
