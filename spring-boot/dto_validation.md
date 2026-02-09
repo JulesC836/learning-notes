@@ -1,8 +1,3 @@
-Voici un fichier Markdown complet et structuré que tu peux copier-coller. Il résume les options de validation essentielles avec **Jakarta Validation**.
-
----
-
-```markdown
 # Guide de Validation des DTO avec Jakarta Validation
 
 La validation des **DTO (Data Transfer Objects)** est la première ligne de défense de votre application. Elle permet de s'assurer que les données entrantes respectent le format attendu avant même d'atteindre votre logique métier.
@@ -48,8 +43,8 @@ Si vous utilisez **Spring Boot**, la dépendance suivante inclut l'implémentati
 | --- | --- |
 | `@Size(min, max)` | Contrôle la longueur d'une String ou d'une Collection. |
 | `@Email` | Vérifie que le format correspond à une adresse email valide. |
-| `@Pattern(regexp)` | Valide la donnée selon une expression régulière (Regex). |
-
+| `@Pattern(regexp)` | Valide la donnée selon une expression régulière (Regex) 
+    Pour une liste deroulante: regexp="option1\|option2\|"...|
 ### 4. Validation de Dates
 
 | Annotation | Description |
@@ -106,11 +101,5 @@ public ResponseEntity<String> createUser(@Valid @RequestBody UserRequestDTO user
 * **Validation Cascade** : Si votre DTO contient un autre objet (ex: `AddressDTO`), utilisez `@Valid` sur le champ pour déclencher la validation récursive.
 * **Messages personnalisés** : Vous pouvez créer un fichier `src/main/resources/ValidationMessages.properties` pour gérer les messages d'erreur de façon centralisée.
 * **Groupes** : Utilisez l'attribut `groups` pour appliquer des règles différentes selon le contexte (ex: `@NotNull(groups = OnUpdate.class)`).
-
-```
-
----
-
-Souhaitez-vous que je génère également le code pour un **GlobalExceptionHandler** afin de capturer ces erreurs et les renvoyer proprement au format JSON ?
 
 ```
